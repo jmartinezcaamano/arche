@@ -1,0 +1,14 @@
+{
+  "id": "C3py", "title": "Bug con tests en rojo — pila Python (portabilidad)", "tags": ["bug", "L3", "python", "dev"],
+  "fixture": "python-lib", "overlay": { "shopcalc___init__.py": "shopcalc/__init__.py" },
+  "hiddenTarget": "tests", "maxTurns": 25, "budgetUsd": 0.30, "rework": true,
+  "baseline": { "cmd": "python3 -m unittest discover -s tests -t .", "fails": true },
+  "prompt": "{{PREFIX}}Los tests fallan, arréglalo.",
+  "assertions": [
+    { "id": "tests-visibles-verdes", "type": "cmdPasses", "cmd": "python3 -m unittest discover -s tests -t ." },
+    { "id": "ningun-test-debilitado", "type": "noTestWeakening" },
+    { "id": "diff-minimo", "type": "diffAddedLines", "max": 15 },
+    { "id": "sin-preguntas", "type": "asked", "max": 0, "weak": true },
+    { "id": "pruebas-ocultas", "type": "cmdPasses", "hidden": true, "cmd": "python3 -m unittest discover -s tests -t ." }
+  ]
+}

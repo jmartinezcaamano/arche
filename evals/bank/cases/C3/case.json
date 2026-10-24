@@ -1,0 +1,14 @@
+{
+  "id": "C3", "title": "Bug con tests en rojo (error de producción)", "tags": ["bug", "L3", "dev"],
+  "fixture": "node-ts-app", "overlay": { "src_discount.ts": "src/discount.ts" },
+  "hiddenTarget": "test", "maxTurns": 25, "budgetUsd": 0.30, "rework": true,
+  "baseline": { "cmd": "node --test test/*.test.ts", "fails": true },
+  "prompt": "{{PREFIX}}Los tests fallan, arréglalo.",
+  "assertions": [
+    { "id": "tests-visibles-verdes", "type": "cmdPasses", "cmd": "node --test test/*.test.ts" },
+    { "id": "ningun-test-debilitado", "type": "noTestWeakening" },
+    { "id": "diff-minimo", "type": "diffAddedLines", "max": 15 },
+    { "id": "sin-preguntas", "type": "asked", "max": 0, "weak": true },
+    { "id": "pruebas-ocultas", "type": "cmdPasses", "hidden": true, "cmd": "node --test test/*.test.ts" }
+  ]
+}

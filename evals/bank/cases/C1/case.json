@@ -1,0 +1,13 @@
+{
+  "id": "C1", "title": "Tooltip en un botón (E19)", "tags": ["fast-path", "L1", "dev"],
+  "fixture": "node-ts-app", "maxTurns": 12, "budgetUsd": 0.15, "rework": false,
+  "prompt": "{{PREFIX}}Añade un tooltip «Guardar cambios» al botón de public/index.html.",
+  "assertions": [
+    { "id": "diff-solo-index", "type": "diffFiles", "only": ["public/index.html"] },
+    { "id": "diff-pequeño", "type": "diffAddedLines", "max": 3 },
+    { "id": "sin-spec-ni-plan", "type": "noNewFiles", "patterns": ["spec", "plan", "tasks"] },
+    { "id": "tooltip-presente", "type": "addedLinesMatch", "regex": "Guardar cambios" },
+    { "id": "tests-previos-verdes", "type": "cmdPasses", "cmd": "node --test test/*.test.ts" },
+    { "id": "sin-preguntas", "type": "asked", "max": 0, "weak": true }
+  ]
+}

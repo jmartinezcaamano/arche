@@ -1,0 +1,1 @@
+{ "name": "fixture-node-ts-app", "private": true, "type": "module", "scripts": { "test": "node --test test/*.test.ts" } }
